@@ -44,6 +44,7 @@ next-env.d.ts
 # package-lock.json
 package-lock.json
 **/package-lock.json
+./package-lock.json
 prisma/dbml/*
 prisma/dev.db
 
@@ -54,3 +55,4 @@ uploads/files/students/documentations
 uploads/files/system/documentation/examples
 uploads/files/system/documentation/schemas
 uploads/files/system/projects/terms
+package-lock.json

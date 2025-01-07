@@ -19,6 +19,11 @@ const WheelFortune = ({data}) => {
   const rootRef = useRef(null);
   const spinningRef = useRef(false)
 
+  function randomFromRange(n) {
+    const buf = crypto.randomBytes(4);
+    return buf.readUInt32BE(0) % n;
+  }
+
   const shuffleArray = (data) => {
     for (let i = data.length - 1; i > 0; i--) {
       const buf = crypto.randomBytes(4);
@@ -72,7 +77,7 @@ const WheelFortune = ({data}) => {
       if(e.code !== "Space") return;
 
       if (!spinning && !spinningRef.current) {
-        const newPrizeNumber = Math.floor(Math.random() * data.length);
+        const newPrizeNumber = randomFromRange(data.length);
         setPrizeNumber(newPrizeNumber);
         setSpinning(true);
         spinningRef.current = true;
@@ -128,6 +133,7 @@ const WheelFortune = ({data}) => {
       <div tabIndex={0} ref={rootRef} className="w-screen flex justify-center items-center h-[100dvh] overflow-hidden">
         <div className="scale-[170%] ">
           <Wheel
+            pointerProps={{src:"/pointer.svg"}}
             outerBorderWidth={1}
             radiusLineWidth={1}
             innerRadius={20}
